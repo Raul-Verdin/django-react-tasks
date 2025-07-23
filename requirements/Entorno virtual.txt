@@ -1,0 +1,5 @@
+# Crear un entorno virtual nuevo
+	# python -m venv venv
+
+# Activarlo el entorno virtual
+	# venv\Scripts\activate o venv\Scripts\Activate.ps1

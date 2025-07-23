@@ -1,0 +1,40 @@
+📁 ESTRUCTURA DEL PROYECTO Y DESCRIPCIÓN
+
+├── config/ (o nombre del proyecto Django)
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py               ← Configuración global: CORS, CSRF, apps
+│   ├── urls.py                   ← Incluye rutas del API y CSRF
+│   └── wsgi.py
+
+├── apps/
+│   └── tasks/
+│       ├── models.py             ← Modelo Task (title, description, done)
+│       ├── serializers.py        ← Serializador para Task
+│       ├── views.py              ← CRUD + endpoint `/api/csrf/`
+│       ├── urls.py               ← Router DRF para `/api/v1/tasks/`
+│       └── migrations/
+
+├── client/ (o frontend/)
+│   ├── src/
+│   │   ├── api/
+│   │   │   ├── tasks.api.js      ← Axios, CSRF headers y rutas API
+│   │   │   └── csrf.js (opcional)← Petición directa a `/api/csrf/`
+│   │   ├── components/
+│   │   │   ├── Navigation.jsx    ← Navegación principal
+│   │   │   ├── TaskCard.jsx      ← Tarjeta individual de tarea
+│   │   │   └── TasksList.jsx     ← Lista de tareas
+│   │   ├── pages/
+│   │   │   ├── TaskFormPage.jsx  ← Formulario de crear/editar tarea
+│   │   │   └── TasksPage.jsx     ← Página principal
+│   │   ├── App.jsx               ← Rutas y lógica inicial (CSRF)
+│   │   └── main.jsx              ← Punto de entrada React
+│   ├── .env                      ← `VITE_BACKEND_URL=http://localhost:8000`
+│   └── vite.config.js
+
+├── manage.py                    ← Script de Django
+├── db.sqlite3                   ← Base de datos local
+├── staticfiles/                 ← Archivos para producción (build)
+├── README.md                    ← Documentación general
+├── instrucciones.txt            ← Cómo ejecutar el proyecto
+└── estructura.txt               ← Explicación de carpetas y archivos

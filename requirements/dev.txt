@@ -1,0 +1,16 @@
+# Desarrollo local (incluye herramientas de desarrollo (como yapf, ipython, etc.)
+
+#   Instrucciones para instalación
+    # pip install -r requirements/dev.txt
+
+# Herramientas de desarrollo
+yapf==0.32.0
+
+# Opcional: consola interactiva
+ipython
+
+# Útil para cargar .env automáticos (si decides usarlo)
+python-dotenv
+
+#si deseas herramientas de profiling o debug visual.
+    # django-debug-toolbar 

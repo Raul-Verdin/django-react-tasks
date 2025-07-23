@@ -1,0 +1,18 @@
+# .gitignore
+
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+
+# React/Vite
+client/node_modules/
+client/dist/
+client/.env
+
+# General
+*.log
+staticfiles/
+.vscode/
+.idea/

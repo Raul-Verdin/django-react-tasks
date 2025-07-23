@@ -1,0 +1,11 @@
+# Producción (deploy), (añade dependencias específicas para producción (como gunicorn, whitenoise)
+
+#   Instrucciones para instalación
+    # pip install -r requirements/prod.txt
+
+# Producción
+gunicorn==20.1.0
+whitenoise==6.4.0
+dj-database-url==1.2.0
+Jinja2==3.1.2
+MarkupSafe==2.1.2

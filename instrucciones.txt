@@ -1,0 +1,75 @@
+📌 INSTRUCCIONES PARA CORRER Y PROBAR EL PROYECTO
+
+1. 🚀 Iniciar el backend (Django)
+--------------------------------
+Desde la raíz del backend (donde está `manage.py`):
+
+> python manage.py migrate
+> python manage.py runserver
+
+Esto iniciará el backend en: http://localhost:8000
+
+
+2. 💻 Iniciar el frontend (React + Vite)
+----------------------------------------
+Desde la carpeta `client/` o `frontend/` según tu estructura:
+
+> npm install
+> npm run dev
+
+Esto lanza el frontend en: http://localhost:5173
+
+
+3. 🔧 Variables de entorno necesarias
+-------------------------------------
+Archivo: client/.env o frontend/.env
+
+Contenido:
+VITE_BACKEND_URL=http://localhost:8000
+
+
+4. 🌐 Rutas disponibles
+-----------------------
+
+🎯 FRONTEND (React + Vite):
+- http://localhost:5173/                     → Redirige a /tasks
+- http://localhost:5173/tasks               → Lista todas las tareas
+- http://localhost:5173/tasks-create        → Formulario para crear tarea
+- http://localhost:5173/tasks/:id           → Editar tarea existente
+
+📡 BACKEND (Django API):
+- http://localhost:8000/api/v1/tasks/         → `GET` (listar), `POST` (crear)
+- http://localhost:8000/api/v1/tasks/<id>/    → `GET`, `PUT`, `DELETE`
+- http://localhost:8000/api/csrf/             → ✅ Devuelve y establece la cookie CSRF
+
+🧪 DOCUMENTACIÓN API:
+(opcional si instalaste drf-yasg o similar)
+- http://localhost:8000/api/docs/     → Swagger
+- http://localhost:8000/api/redoc/    → Redoc
+
+
+5. ✅ Seguridad CSRF (implementada)
+-----------------------------------
+- Se hace una llamada inicial a `/api/csrf/` en el `App.jsx`
+- El token CSRF se guarda como cookie `csrftoken`
+- Cada petición `POST`, `PUT`, `DELETE` incluye el header `X-CSRFToken`
+  (ver `tasks.api.js`)
+
+
+6. ⚠️ Problemas comunes
+-----------------------
+❌ Error 403 Forbidden:
+  - Asegúrate de que tu frontend usa `withCredentials: true` en axios
+  - Verifica que el backend tenga configurado correctamente:
+    - `CORS_ALLOWED_ORIGINS`
+    - `CSRF_TRUSTED_ORIGINS`
+  - Visita directamente `/api/csrf/` en el navegador para ver si se genera la cookie
+
+❌ Error 404 con tareas nuevas:
+  - A veces las tareas creadas no aparecen por problemas de redirección o de base de datos
+  - Revisa `http://localhost:8000/api/v1/tasks/` para ver todas las tareas
+  - Verifica que estés accediendo a un ID existente
+
+❌ URL malformada `/undefined/api/v1/tasks/`:
+  - Asegúrate de haber definido `VITE_BACKEND_URL` correctamente en `.env`
+  - Reinicia el servidor con `npm run dev`
