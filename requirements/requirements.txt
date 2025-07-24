@@ -1,4 +1,4 @@
-# Antiguo no necesario
+# Solo si te da hueva instala todo
 
 asgiref==3.6.0
 certifi==2022.12.7
